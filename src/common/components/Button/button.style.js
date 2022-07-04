@@ -15,7 +15,8 @@ const ButtonStyle = styled.button`
   border-radius: 0;
   font-family: inherit;
   font-size: 2.625rem;
-  font-weight: ${themeGet("fontWeights.4", "500")};
+
+  font-weight: 900;
   text-decoration: none;
   text-transform: capitalize;
   border: 0;
@@ -49,6 +50,8 @@ const ButtonStyle = styled.button`
 
   &[disabled] {
     cursor: unset;
+    color: black;
+    background-color: #939393;
   }
 
   span.btn-icon {

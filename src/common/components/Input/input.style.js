@@ -70,8 +70,8 @@ const InputField = styled.div`
     padding: 11px;
     display: block;
     color: #000;
-    height: 3.125rem;
-    width: 30rem;
+    height: 50px;
+    width: 100%;
     box-shadow: none;
     border-radius: 0px;
     box-sizing: border-box;

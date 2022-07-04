@@ -1,5 +1,5 @@
 import Image from "common/components/Image";
-import BannerArea from "./banner.style";
+import BannerArea from "./coming-soon.style";
 import React, { useEffect } from "react";
 import Link from "next/link";
 import NextImage from "common/components/NextImage";
@@ -8,32 +8,74 @@ import aut from "common/assets/image/aut-logo.svg";
 import { FooterData } from "common/data";
 import { useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
+import { useGesture } from "@use-gesture/react";
 
-const Banner = () => {
+const ComingSoon = () => {
+  const [initialized, setInitialized] = useState(true);
   const [width, setWidth] = useState(250);
+  const [start, setStart] = useState(null);
   const [scale, setScale] = useState(0);
   const { social } = FooterData;
 
   useEffect(() => {
+    if (initialized && "ontouchstart" in window) {
+      setWidth(150);
+      setInitialized(false);
+    }
+
     const handleScroll = (e) => {
       const minZoom = 250;
       const maxZoom = window.innerWidth / 2;
       const zoomSpeed = 0.07;
-      const min = Math.min(1, e.wheelDelta || -e.detail);
+      const min = Math.min(1, -e.wheelDelta || -e.detail);
       const delta = Math.max(-1, min) * zoomSpeed;
       const finalWidth = Math.max(
         minZoom,
         Math.min(maxZoom, width + minZoom * delta)
       );
-      // setScale(Math.max(0, Math.min(1, scale + 0.4 * delta)));
+
       setScale(finalWidth === maxZoom ? 1 : 0);
       setWidth(finalWidth);
     };
-    window.addEventListener("wheel", handleScroll);
-    return () => {
-      window.removeEventListener("wheel", handleScroll);
+
+    const _onTouchStart = (e) => {
+      setStart(e.changedTouches[0]);
     };
-  }, [width, scale]);
+
+    const _onTouchMove = (e) => {
+      let end = e.changedTouches[0];
+      const move = -(end.screenY - start.screenY);
+
+      const minZoom = 150;
+      const maxZoom = window.innerWidth;
+      const zoomSpeed = 0.2;
+      const min = Math.min(1, move);
+      const delta = Math.max(-1, min) * zoomSpeed;
+      
+      const finalWidth = Math.max(
+        minZoom,
+        Math.min(maxZoom, width + minZoom * delta)
+      );
+
+      setScale(finalWidth === maxZoom ? 1 : 0);
+      setWidth(finalWidth);
+    };
+
+    if ("ontouchstart" in window) {
+      window.addEventListener("touchstart", _onTouchStart);
+      window.addEventListener("touchmove", _onTouchMove);
+    } else {
+      window.addEventListener("wheel", handleScroll);
+    }
+    return () => {
+      if ("ontouchstart" in window) {
+        window.removeEventListener("touchend", _onTouchStart);
+        window.removeEventListener("touchmove", _onTouchMove);
+      } else {
+        window.removeEventListener("wheel", handleScroll);
+      }
+    };
+  }, [width, scale, start, initialized]);
 
   return (
     <>
@@ -94,7 +136,6 @@ const Banner = () => {
             className="text-animation"
             initial={false}
             animate={{
-              // scale: scale,
               opacity: scale,
             }}
           >
@@ -102,10 +143,8 @@ const Banner = () => {
               className="coming-soon-text"
               content="create your own standard."
             />
-            <Link href="http://www.w3.org/2000/svg">
-              <a target="_blank" className="coming-soon-link">
-                read manifesto
-              </a>
+            <Link href="/manifesto">
+              <a className="coming-soon-link">go to manifesto</a>
             </Link>
           </motion.div>
 
@@ -113,7 +152,6 @@ const Banner = () => {
             className="socials-animation"
             initial={false}
             animate={{
-              // scale: scale,
               opacity: scale,
             }}
           >
@@ -133,4 +171,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default ComingSoon;

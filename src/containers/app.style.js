@@ -5,13 +5,13 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-size: 100%;
 
-    @media only screen and (max-width: 1600px) {
-      font-size: 62.8%;
-    }
+    // @media only screen and (max-width: 1600px) {
+    //   font-size: 62.8%;
+    // }
   }
   body {
     font-family: 'Source Sans Pro', sans-serif;
-    font-size: 1.4rem;
+    // font-size: 16px;
   }
   h1,
   h2,

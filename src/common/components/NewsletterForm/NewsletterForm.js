@@ -47,84 +47,91 @@ const NewsletterForm = ({ status, message, onValidated }) => {
 
   return (
     <>
-      <NewsletterFormWrapper
-        autoComplete="off"
-        onSubmit={handleSubmit(onSubmit, onError)}
-        className="d-flex newsletter-input-fields"
-      >
-        <div className="form-field">
-          <Controller
-            name="name"
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { name, value, onChange } }) => {
-              return (
-                <Input
-                  required
-                  defaultValue={value || ""}
-                  name={name}
-                  value={value || ""}
-                  onChange={onChange}
-                  placeholder="First Name"
+      {status !== "success" ? (
+        <>
+          <NewsletterFormWrapper
+            autoComplete="off"
+            onSubmit={handleSubmit(onSubmit, onError)}
+            className="d-flex newsletter-input-fields"
+          >
+            <div className="form-fields">
+              <div className="form-field">
+                <Controller
+                  name="name"
+                  control={control}
+                  rules={{
+                    required: true,
+                  }}
+                  render={({ field: { name, value, onChange } }) => {
+                    return (
+                      <Input
+                        required
+                        defaultValue={value || ""}
+                        name={name}
+                        value={value || ""}
+                        onChange={onChange}
+                        placeholder="How should we call you?"
+                      />
+                    );
+                  }}
                 />
-              );
-            }}
-          />
-        </div>
-        <div className="form-field">
-          <Controller
-            name="email"
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { name, value, onChange } }) => {
-              return (
-                <Input
-                  required
-                  defaultValue={value || ""}
-                  name={name}
-                  value={value || ""}
-                  onChange={onChange}
-                  placeholder="Email Address"
+              </div>
+              <div className="form-field">
+                <Controller
+                  name="email"
+                  control={control}
+                  rules={{
+                    required: true,
+                  }}
+                  render={({ field: { name, value, onChange } }) => {
+                    return (
+                      <Input
+                        required
+                        defaultValue={value || ""}
+                        name={name}
+                        value={value || ""}
+                        onChange={onChange}
+                        placeholder="Your email."
+                      />
+                    );
+                  }}
                 />
-              );
-            }}
-          />
-        </div>
-        <div className="submit-btn">
-          {status === "sucess" ? (
-            <Text dangerouslySetInnerHTML={{ __html: decode(message) }} />
-          ) : (
-            <Button
-              isLoading={status === "sending"}
-              disabled={status === "sending"}
-              type="submit"
-              className="light"
-              title="Sign Up Today!"
-            />
-          )}
-        </div>
-      </NewsletterFormWrapper>
-      <div
-        className="newsletter-form-info"
-        style={{
-          padding: "20px 0",
-        }}
-      >
-        {status === "error" ? (
-          <Text
+              </div>
+            </div>
+            <div className="submit-btn">
+              <Button
+                isLoading={status === "sending"}
+                disabled={status === "sending" || !values.email || !values.name}
+                type="submit"
+                className="light"
+                title="Sign Up"
+              />
+            </div>
+          </NewsletterFormWrapper>
+          <div
+            className="newsletter-form-info"
             style={{
-              position: "absolute",
-              color: "red",
+              padding: "20px 0",
             }}
-            className="newsletter-form-error"
-            dangerouslySetInnerHTML={{ __html: getMessage(message) }}
-          />
-        ) : null}
-      </div>
+          >
+            {status === "error" ? (
+              <Text
+                style={{
+                  position: "absolute",
+                  color: "red",
+                }}
+                className="newsletter-form-error"
+                dangerouslySetInnerHTML={{ __html: getMessage(message) }}
+              />
+            ) : null}
+          </div>
+        </>
+      ) : (
+        <Text
+          className="manifesto-title"
+          content="**Your subscription was successful**"
+        />
+      )}
     </>
   );
 };

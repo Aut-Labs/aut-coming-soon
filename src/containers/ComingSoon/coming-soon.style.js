@@ -13,11 +13,6 @@ const BannerArea = styled.section`
     right: 70px;
   }
 
-  .coming-soon-text {
-    color: white; 
-    font-size: 40px;
-  }
-
   .text-animation {
     position: absolute;
     width: 100%;
@@ -29,6 +24,8 @@ const BannerArea = styled.section`
     text-align: center;
     font-weight: bold;
     letter-spacing: 8px;
+    color: white;
+    font-size: 40px;
   }
 
   .coming-soon-link {
@@ -37,6 +34,7 @@ const BannerArea = styled.section`
     text-decoration: underline;
     margin-right: 10px;
     margin-top: 10px;
+    cursor: pointer;
   }
 
   .social-links {
@@ -50,6 +48,55 @@ const BannerArea = styled.section`
 
     img {
       height: 30px;
+    }
+  }
+
+  .manifesto-title {
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .manifesto-subtitle {
+    text-align: center;
+    color: white;
+    font-size: 28px;
+  }
+
+  .manifesto-email {
+    text-align: center;
+    font-weight: 300;
+    color: white;
+    font-size: 24px;
+    margin-top: 40px;
+    margin-bottom: 70px;
+  }
+
+  @media (max-width: 576px) {
+    .logo-animation {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .text-animation {
+      padding: 15px;
+
+      .coming-soon-text {
+        font-size: 30px;
+      }
+    }
+
+    .social-links {
+      left: 50%;
+      transform: translateX(-50%);
+  
+      img {
+        height: 20px;
+      }
     }
   }
 `;

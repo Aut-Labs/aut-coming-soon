@@ -23,11 +23,11 @@ const MainWrapper = ({ children, hideAuth }) => {
           <meta property="og:title" content="Aut" />
           <meta
             name="description"
-            content="Do more with your DAO. Aut's are Individual NFT IDs that unlock the true potential of Web3 Communities."
+            content="Do more with your DAO 👥. Āut is an expandable Protocol for Role-based Membership & Governance in Web3 Communities."
           />
           <meta
             property="og:description"
-            content="Do more with your DAO. Aut's are Individual NFT IDs that unlock the true potential of Web3 Communities."
+            content="Do more with your DAO 👥. Āut is an expandable Protocol for Role-based Membership & Governance in Web3 Communities."
           />
         </Head>
         <ResetCSS />
