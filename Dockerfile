@@ -29,7 +29,7 @@ RUN apk --update --no-cache \
 COPY ./package*.json ./
 
 RUN npm install --global pm2
-RUN npm install
+RUN npm install --force
 
 COPY ./ ./
 
