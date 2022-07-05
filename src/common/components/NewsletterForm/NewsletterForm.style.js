@@ -11,8 +11,8 @@ const NewsletterFormWrapper = styled.form`
     border: none;
     width: 100%;
     input {
-      font-size: 22px;
-      height: 50px;
+      font-size: 18px;
+      height: 40px;
     }
   }
 
@@ -24,7 +24,8 @@ const NewsletterFormWrapper = styled.form`
 
     button {
       width: 100%;
-      height: 55px;
+      height: 50px;
+      min-height: 50px;
       font-size: 22px;
     }
   }
@@ -35,8 +36,8 @@ const NewsletterFormWrapper = styled.form`
       button {
         width: 100%;
         min-width: unset;
-        height: 50px;
-        min-height: 50px;
+        height: 45px;
+        min-height: 45px;
         font-size: 22px;
       }
     }
@@ -44,7 +45,7 @@ const NewsletterFormWrapper = styled.form`
     .form-field {
       input {
         font-size: 14px;
-        height: 40px;
+        height: 35px;
       }
     }
   }

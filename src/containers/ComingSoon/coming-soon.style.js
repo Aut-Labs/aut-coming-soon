@@ -9,7 +9,7 @@ const BannerArea = styled.section`
 
   .logo-animation {
     position: absolute;
-    top: 100px;
+    top: 70px;
     right: 70px;
   }
 
@@ -43,35 +43,12 @@ const BannerArea = styled.section`
     align-items: center;
     grid-gap: 2rem;
     position: absolute;
-    bottom: 45px;
-    right: 40px;
+    bottom: 75px;
+    right: 75px;
 
     img {
-      height: 30px;
+      height: 20px;
     }
-  }
-
-  .manifesto-title {
-    text-align: center;
-    font-weight: bold;
-    color: white;
-    font-size: 32px;
-    margin-bottom: 40px;
-  }
-
-  .manifesto-subtitle {
-    text-align: center;
-    color: white;
-    font-size: 28px;
-  }
-
-  .manifesto-email {
-    text-align: center;
-    font-weight: 300;
-    color: white;
-    font-size: 24px;
-    margin-top: 40px;
-    margin-bottom: 70px;
   }
 
   @media (max-width: 576px) {
@@ -86,14 +63,20 @@ const BannerArea = styled.section`
       padding: 15px;
 
       .coming-soon-text {
-        font-size: 30px;
+        font-size: 25px;
       }
+    }
+
+    .coming-soon-link {
+      font-size: 16px;
+      margin-right: 30px;
     }
 
     .social-links {
       left: 50%;
+      right: auto;
       transform: translateX(-50%);
-  
+
       img {
         height: 20px;
       }
